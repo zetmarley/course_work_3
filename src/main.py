@@ -1,8 +1,8 @@
 import json
 
 """Ниже пишем функцию, возвращающая и переводящая текст в норм формат"""
-def transactions():
-    with open("operations.json", 'r') as f:
+def transactions(path = "../operations.json"):
+    with open(path, 'r') as f:
         return json.loads(f.read())
 
 """Ниже функция возвращает параметры последних 5-и транзакций"""
@@ -65,3 +65,5 @@ def last_five_result():
         text += f'{operation['date'][8:10]}.{operation['date'][5:7]}.{operation['date'][:4]} {operation['description']}\n{' '.join(hiden_from_info)} -> {toinfo}\n{operation["operationAmount"]["amount"]} {operation["operationAmount"]["currency"]["name"]}\n\n'
         hiden_from_info = ''
     return text
+
+print(last_five_result())
